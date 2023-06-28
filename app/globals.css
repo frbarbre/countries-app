@@ -2,26 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.dark .navbar {
+  background-color: #2b3743;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.dark .search {
+  background-color: #2b3743;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.dark .country-card {
+  background-color: #2b3743;
+}
+
+.dark .choice-title {
+  background-color: #2b3743;
+}
+
+.dark .choice-box {
+  background-color: #2b3743;
+}
+
+.dark .borders {
+  background-color: #2b3743;
+}
+
+.dark #search-ico {
+  stroke: #fff;
+}
+
+.dark #arrow {
+  stroke: #fff;
+}
+
+.dark #back-arrow {
+    fill: #fff;
 }
