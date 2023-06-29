@@ -41,3 +41,12 @@
 .dark #back-arrow {
   fill: #fff;
 }
+
+.dark .error {
+    background-color: #2b3743;
+}
+
+.dark .error:hover {
+    background-color: #fff;
+    color: black;
+}

@@ -15,6 +15,7 @@ module.exports = {
       },
       height: {
         max: "max-content",
+        screenFix: "calc(100vh - 100px)",
       },
       width: {
         max: "max-content",
@@ -24,6 +25,7 @@ module.exports = {
       },
     },
     screens: {
+      xs: "370px",
       sm: "480px",
       md: "885px",
     },
