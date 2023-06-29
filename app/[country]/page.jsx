@@ -2,6 +2,15 @@ import Borders from "../components/Borders";
 import BackButton from "../components/BackButton";
 import Image from "next/image";
 
+// export async function generateStaticParams() {
+//   const data = await fetch(`https://restcountries.com/v3.1/all`);
+//   const result = await data.json();
+
+//   return result.name.map((country) => ({
+//     country: toString(country.common),
+//   }));
+// }
+
 export default async function CountryPage({ params }) {
   // Getting data from the entire API
   const allData = await fetch(`https://restcountries.com/v3.1/all`);

@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function BackButton() {
     return (
-      <Link href={"/"} className="flex gap-2 items-center">
+      <Link href={"/"} className="button flex gap-2 items-center px-4 py-2 shadow-std w-max rounded-md m-12">
         <svg
           width="24px"
           height="28px"

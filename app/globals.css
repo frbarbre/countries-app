@@ -26,6 +26,10 @@
   background-color: #2b3743;
 }
 
+.dark .button {
+  background-color: #2b3743;
+}
+
 .dark #search-ico {
   stroke: #fff;
 }
@@ -35,5 +39,5 @@
 }
 
 .dark #back-arrow {
-    fill: #fff;
+  fill: #fff;
 }
