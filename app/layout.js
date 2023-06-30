@@ -8,7 +8,7 @@ import { Nunito_Sans } from "next/font/google"
 const nunitoSans = Nunito_Sans({subsets: ["latin"]})
 
 export default function RootLayout({ children }) {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
     <html lang="en">
