@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Sorter(props) {
   const [sorterActive, setSorterActive] = useState(false);
 
   return (
     <div
-      className="sm:max-w-[290px] w-full relative"
+      className="sm:max-w-[290px] w-full relative z-50"
       onClick={() => setSorterActive((prev) => !prev)}
     >
       <div className="relative cursor-pointer">
@@ -39,34 +40,41 @@ export default function Sorter(props) {
           </svg>
         </div>
       </div>
-      {sorterActive && (
-        <ul className="choice-box font-medium absolute left-0 right-0 translate-y-[6px] flex flex-col gap-3 pl-[20px] py-4 rounded-lg shadow-std">
-          <li
-            className="cursor-pointer hover:translate-x-2 transition-all"
-            onClick={props.popHigh}
+      <AnimatePresence>
+        {sorterActive && (
+          <motion.ul
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 6 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="choice-box font-medium absolute left-0 right-0 flex flex-col gap-3 pl-[20px] py-4 rounded-lg shadow-std bg-white"
           >
-            Population (Highest - Lowest)
-          </li>
-          <li
-            className="cursor-pointer hover:translate-x-2 transition-all"
-            onClick={props.popLow}
-          >
-            Population (Lowest - Highest)
-          </li>
-          <li
-            className="cursor-pointer hover:translate-x-2 transition-all"
-            onClick={props.alphaFirst}
-          >
-            Alphabetic (A - Å)
-          </li>
-          <li
-            className="cursor-pointer hover:translate-x-2 transition-all"
-            onClick={props.alphaLast}
-          >
-            Alphabetic (Å - A)
-          </li>
-        </ul>
-      )}
+            <li
+              className="cursor-pointer hover:translate-x-2 transition-all"
+              onClick={props.popHigh}
+            >
+              Population (Highest - Lowest)
+            </li>
+            <li
+              className="cursor-pointer hover:translate-x-2 transition-all"
+              onClick={props.popLow}
+            >
+              Population (Lowest - Highest)
+            </li>
+            <li
+              className="cursor-pointer hover:translate-x-2 transition-all"
+              onClick={props.alphaFirst}
+            >
+              Alphabetic (A - Å)
+            </li>
+            <li
+              className="cursor-pointer hover:translate-x-2 transition-all"
+              onClick={props.alphaLast}
+            >
+              Alphabetic (Å - A)
+            </li>
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -1,8 +1,14 @@
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 export default function Navbar({ setDarkMode, darkMode }) {
   return (
-    <header className="navbar flex justify-between items-center gap-4 p-8 shadow-std">
+    <motion.header
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{delay: 0.1}}
+      className="navbar flex justify-between items-center gap-4 p-8 shadow-std"
+    >
       <Link href={"/"} className="font-bold text-[16px] sm:text-[24px]">
         Where in the world?
       </Link>
@@ -27,6 +33,6 @@ export default function Navbar({ setDarkMode, darkMode }) {
         </svg>
         <div className="font-bold">Dark Mode</div>
       </div>
-    </header>
+    </motion.header>
   );
 }

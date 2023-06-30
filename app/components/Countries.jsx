@@ -6,6 +6,7 @@ import Filter from "./Filter";
 import Sorter from "./Sorter";
 import Error from "./Error";
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Countries({ res }) {
   const [searchValue, setSearchValue] = useState("");
@@ -92,7 +93,12 @@ export default function Countries({ res }) {
 
   return (
     <div>
-      <div className="flex justify-between mt-12 m-6 gap-6 flex-wrap md:flex-nowrap">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25 }}
+        className="flex justify-between mt-12 m-6 gap-6 flex-wrap md:flex-nowrap"
+      >
         <Search
           searchValue={searchValue}
           setSearchValue={setSearchValue}
@@ -108,38 +114,52 @@ export default function Countries({ res }) {
             popHigh={popHigh}
           />
         </div>
-      </div>
-      {results ? (
-        <div className="grid grid-cols-fluid gap-12 p-6 max-w-[1400px] mx-auto">
-          {res.map((country) => {
-            const searchString = country.name.common.toLowerCase();
-            const searchCheck = searchString.includes(search);
+      </motion.div>
+      <AnimatePresence>
+        {results ? (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ delay: 0.5 }}
+            className="grid grid-cols-fluid gap-12 p-6 max-w-[1400px] mx-auto"
+          >
+            {res.map((country) => {
+              const searchString = country.name.common.toLowerCase();
+              const searchCheck = searchString.includes(search);
 
-            const filterString = country.region;
-            const filterCheck = filterString.includes(filter);
+              const filterString = country.region;
+              const filterCheck = filterString.includes(filter);
 
-            return (
-              <div
-                className={`${
-                  searchCheck && filterCheck ? "" : "hidden"
-                } country-card rounded-xl max-w-[500px] hover:scale-105 transition-all`}
-                key={country.name.common}
-              >
-                <CountryCard
-                  name={country.name.common}
-                  population={country.population}
-                  region={country.region}
-                  capital={country.capital}
-                  image={country.flags.svg}
-                  alt={country.flags.alt}
-                />
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <Error res={res} search={search} setFilter={setFilter} filter={filter} searchArray={searchedArray} />
-      )}
+              return (
+                <div
+                  className={`${
+                    searchCheck && filterCheck ? "" : "hidden"
+                  } country-card rounded-xl max-w-[500px] hover:scale-105 transition-all`}
+                  key={country.name.common}
+                >
+                  <CountryCard
+                    name={country.name.common}
+                    population={country.population}
+                    region={country.region}
+                    capital={country.capital}
+                    image={country.flags.svg}
+                    alt={country.flags.alt}
+                  />
+                </div>
+              );
+            })}
+          </motion.div>
+        ) : (
+          <Error
+            res={res}
+            search={search}
+            setFilter={setFilter}
+            filter={filter}
+            searchArray={searchedArray}
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 }

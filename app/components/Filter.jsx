@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { filterButtons } from "../constants";
 import { nanoid } from "nanoid";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Filter({ setFilter, filter }) {
   const [filterActive, setFilterActive] = useState(false);
 
   return (
     <div
-      className="sm:max-w-[200px] w-full relative"
+      className="sm:max-w-[200px] w-full relative z-50"
       onClick={() => setFilterActive((prev) => !prev)}
     >
       <div className="relative cursor-pointer">
@@ -41,19 +42,26 @@ export default function Filter({ setFilter, filter }) {
           </svg>
         </div>
       </div>
-      {filterActive && (
-        <ul className="choice-box font-medium absolute left-0 right-0 translate-y-[6px] flex flex-col gap-3 pl-[20px] py-4 rounded-lg shadow-std">
-          {filterButtons.map((filt) => (
-            <li
-              key={nanoid()}
-              onClick={() => setFilter(filt.filter)}
-              className="cursor-pointer hover:translate-x-2 transition-all"
-            >
-              {filt.title}
-            </li>
-          ))}
-        </ul>
-      )}
+      <AnimatePresence>
+        {filterActive && (
+          <motion.ul
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 6 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="choice-box font-medium absolute left-0 right-0 flex flex-col gap-3 pl-[20px] py-4 rounded-lg shadow-std bg-white"
+          >
+            {filterButtons.map((filt) => (
+              <li
+                key={nanoid()}
+                onClick={() => setFilter(filt.filter)}
+                className="cursor-pointer hover:translate-x-2 transition-all"
+              >
+                {filt.title}
+              </li>
+            ))}
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
