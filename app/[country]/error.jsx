@@ -1,6 +1,9 @@
-"use client" // Error components must be Client components
+"use client"
+ // Error components must be Client components
 
 export default function Error({ error, reset }) {
+
+
   return (
     <div className="w-screen h-screenFix flex items-center justify-center flex-col gap-4">
       <h2 className="text-[28px] font-bold">Something went wrong!</h2>
